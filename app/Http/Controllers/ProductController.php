@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use App\Models\Category;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        return view('products.index', ['products' => Product::latest()->with('categories')->paginate(8)]);
     }
 
     /**
@@ -23,7 +25,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view(
+            'products.create',
+            [
+                'main_categories' => Category::whereNull('category_id')->get()
+            ]
+        );
     }
 
     /**
@@ -32,9 +39,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $product = Product::create(['name' => $request->name]);
+        $product->categories()->sync([$request->main_category, $request->sub_category]);
+        return redirect()->route('products.index')->with('success',"''$product->name'' product added successfully.");
     }
 
     /**
@@ -54,11 +63,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $main_categories = Category::whereNull('category_id')->get();
+        $parent_cat = $product->categories[0]->isParent() ? $product->categories[0] : $product->categories[1];
+        $sub_cat = $product->categories[1]->isChild() ? $product->categories[1] : $product->categories[0];
+        return view('products.edit',get_defined_vars());
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -66,9 +77,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update(['name'=>$request->name]);
+        $product->categories()->sync([$request->main_category,$request->sub_category]);
+        return redirect()->route('products.index')->with('success',"'$product->name' product updated successfully.");
     }
 
     /**

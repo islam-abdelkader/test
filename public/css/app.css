@@ -1369,3 +1369,54 @@ select {
   }
 }
 
+label.error
+{
+    display: block;
+color:red;
+font-family:verdana, Helvetica;
+padding-top: .5rem;
+}
+label.error::after
+{
+    content: '* ';
+    color: red;
+}
+label.error::before
+{
+    content: ' *';
+    color: red;
+
+}
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: var(--container-color); /* Red */
+    color: var(--title-color);
+    margin-bottom: 15px;
+    color:white;
+    font-weight: 700;
+}
+.alert.success {
+    background-color: rgb(61, 139, 51);
+}
+.alert.error {
+    background-color:red;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: var(--first-color);
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
