@@ -11,19 +11,19 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-center bg-white border-b border-gray-200">
                     <table class="w-full">
-                        <thead>
+                        <thead class="">
                             <tr>
                                 <th
-                                    class="px-6 py-3 leading-4 tracking-wider text-left text-blue-500 border-b-2 border-gray-300">
+                                    class="px-6 py-3 leading-4 tracking-wider text-blue-500 border-b-2 border-gray-300">
                                     ID</th>
                                 <th
-                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-left text-blue-500 border-b-2 border-gray-300">
+                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-blue-500 border-b-2 border-gray-300">
                                     Name</th>
                                 <th
-                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-left text-blue-500 border-b-2 border-gray-300">
+                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-blue-500 border-b-2 border-gray-300">
                                     Categories</th>
                                 <th
-                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-left text-blue-500 border-b-2 border-gray-300">
+                                    class="px-6 py-3 text-sm leading-4 tracking-wider text-blue-500 border-b-2 border-gray-300">
                                     Actions</th>
                             </tr>
                         </thead>
